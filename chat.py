@@ -9,10 +9,11 @@ for i in range(0,9):
 inIntId = int(idServer)
 
 roots = [
-    {'name': 'sala 1', 'numberPeople': 0, 'connection': 0, 'maxConnection': 5 , 'id': inIntId},   
-    {'name': 'sala 2', 'numberPeople': 0, 'connection': 0, 'maxConnection': 5, 'id': inIntId}
+    {'name': 'room 1', 'numberPeople': 0, 'connection': 0, 'maxConnection': 5 , 'id': inIntId},   
+    {'name': 'room 2', 'numberPeople': 0, 'connection': 0, 'maxConnection': 5, 'id': inIntId}
 ]
 
+rootsNum = len(roots)
 user = dict()
 password = ''
 nameRoot = []
@@ -35,7 +36,7 @@ def createUser(name):
 
 def requestCall(y):
     def desconnect(x):
-        print(f'Você foi desconectado de {x}')
+        print(f'you have been disconnected from {x}')
         user['serverIdLogged'] = ''
         print('When you wanna join in a chat, write here the name him.\n' )
         for i in roots:
@@ -73,20 +74,20 @@ def requestCall(y):
         return MsgFunction(name)
 
     def joinCall():
-        print('You were connected in', y)
+        print("You're connected in", y)
 
-        for i in range(0, 2):
+        for i in range(0, rootsNum):
             user['serverIdLogged'] = roots[i].get('id')
         print(user['serverIdLogged'])
 
-        for i in range(0, 2): 
+        for i in range(0, rootsNum): 
             idIsEquale = user['serverIdLogged'] == roots[i].get('id')
             if idIsEquale:
                 os.system(command='cls')
                 return MsgFunction(name) ###################
 
     def findCall(x):
-        for i in range(0, 2): #arrumar
+        for i in range(0, rootsNum):
             rootFind = roots[i].values()   
             if x in rootFind:
                 return joinCall()
@@ -100,7 +101,7 @@ def requestCall(y):
 
     return findCall(y)
 
-name = input("Whats your name ? \n > ")
+name = input("What's your name ? \n > ")
 
 if name != '':
     createUser(name)
